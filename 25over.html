@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><title>balls11</title>
+<html><head><title>balls12</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -54,7 +54,8 @@
         let app = Vue.createApp({
             data() {     
                 return {
-                    violations: [],          
+                    violations: [],
+                    violationsover25: []
                 }
             },
             created() {      
@@ -65,9 +66,11 @@
                     const response = await fetch('tickets1.json')
                     this.violations = await response.json()  
                 },
+                getviolations() {
+                    this.violations = this.violationsover25.filter( (ticket) => ticket.actual_speed - ticket.posted_speed <= 25 );
+                }    
             }
         })
-        var violationsover25 = violations.filter( (ticket) => ticket.actual_speed - ticket.posted_speed <= 25 );
         app.mount('#ticketsApp')   
     </script>
     
