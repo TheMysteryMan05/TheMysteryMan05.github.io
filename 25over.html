@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><title>balls14</title>
+<html><head><title>balls15</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@
                 <th>MPH Over</th>
                 <th>Violator's Sex</th>
             </tr>
-            <tr v-for = "ticket in violationsover25">
+            <tr v-for = "ticket in violations">
                 <td>{{ticket.tid}}</td>
                 <td>{{ticket.stop_time}}</td>
                 <td>{{ticket.posted_speed}}</td>
@@ -64,12 +64,10 @@
             methods: {    
                 async getData() {
                     const response = await fetch('tickets1.json')
-                    this.violations = await response.json()  
+                    const allTickets = await response.json();
+                    this.violations = allTickets.filter(ticket => (ticket.actual_speed - ticket.posted_speed) >= 25);
                 }
-                getviolations() {
-                    this.violationsover25 = this.violations.filter( (ticket) => (ticket.actual_speed - ticket.posted_speed) >= 25 );
-                }
-            }
+            },
         })
         app.mount('#ticketsApp')   
     </script>
