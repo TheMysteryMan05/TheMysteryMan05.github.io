@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><title>balls7</title>
+<html><head><title>balls8</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -28,22 +28,18 @@
      <h2>Tickets</h2>
           <table class="table table-bordered table-striped">
               <tr>
-                  <th>Date</th>
+                  <th>Ticket ID</th>
                   <th>Time</th>
-                  <th>Speed</th>
                   <th>Posted Speed</th>
                   <th>MPH Over</th>
-                  <th>Age</th>
-                  <th>Sex</th>
+                  <th>Violator's Sex</th>
               </tr>
               <tr v-for = "ticket in violations">
                   <td>{{ticket.tid}}</td>
-                  <td>{{ticket.time}}</td>
-                  <td>{{ticket.speed}}</td>
+                  <td>{{ticket.stop_time}}</td>
                   <td>{{ticket.posted_speed}}</td>
-                  <td>{{ticket.speed - ticket.posted_speed}}</td>
-                  <td>{{ticket.age}}</td>
-                  <td>{{ticket.sex}}</td>
+                  <td>{{ticket.actual_speed - posted_speed}}</td>
+                  <td>{{ticket.violator_sex}}</td>
               </tr>
          </table>
 </div>
